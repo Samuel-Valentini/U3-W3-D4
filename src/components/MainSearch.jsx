@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Job from "./Job";
 import { Link } from "react-router-dom";
-import { actionSearch, getActionSearch } from "../redux/actions";
+import { getActionSearch } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const MainSearch = () => {
@@ -13,9 +13,6 @@ const MainSearch = () => {
     });
 
     const dispatch = useDispatch();
-
-    const baseEndpoint =
-        "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
     const handleChange = (e) => {
         setQuery(e.target.value);
