@@ -8,7 +8,7 @@ import { actionSearch } from "../redux/actions";
 const CompanySearchResults = () => {
     // const [jobs, setJobs] = useState([]);
     const jobs = useSelector((currentState) => {
-        return currentState.re;
+        return currentState.result.data;
     });
     const params = useParams();
     const dispatch = useDispatch();
