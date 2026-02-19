@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Job from "./Job";
 import { Link } from "react-router-dom";
-import { actionSearch } from "../redux/actions";
+import { actionSearch, getActionSearch } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const MainSearch = () => {
@@ -22,22 +22,7 @@ const MainSearch = () => {
     };
 
     useEffect(() => {
-        const asy = async () => {
-            try {
-                const response = await fetch(
-                    baseEndpoint + query + "&limit=20",
-                );
-                if (response.ok) {
-                    const { data } = await response.json();
-                    dispatch(actionSearch(data));
-                } else {
-                    alert("Error fetching results");
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        asy();
+        getActionSearch();
     }, []);
 
     const handleSubmit = async (e) => {

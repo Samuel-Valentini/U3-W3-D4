@@ -19,3 +19,19 @@ export const actionSearch = (data) => {
         payload: data,
     };
 };
+
+export const getActionSearch = () => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await fetch(baseEndpoint + query + "&limit=20");
+            if (response.ok) {
+                const { data } = await response.json();
+                dispatch(actionSearch(data));
+            } else {
+                alert("Error fetching results");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+};
