@@ -1,3 +1,7 @@
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../actions";
+
+ADD_TO_FAVORITES;
+
 const initialState = {
     favorite: {
         companies: [],
@@ -6,7 +10,7 @@ const initialState = {
 
 const mainReducer = (currentState = initialState, action) => {
     switch (action.type) {
-        case "ADD_TO_FAVORITES": {
+        case ADD_TO_FAVORITES: {
             const company = action.payload;
             if (currentState.favorite.companies.includes(company)) {
                 return currentState;
@@ -23,7 +27,7 @@ const mainReducer = (currentState = initialState, action) => {
                 };
         }
 
-        case "REMOVE_FROM_FAVORITES":
+        case REMOVE_FROM_FAVORITES:
             return {
                 ...currentState,
                 favorite: {
