@@ -21,7 +21,7 @@ export const actionSearch = (data) => {
 };
 
 export const getActionSearch = () => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         try {
             const response = await fetch(baseEndpoint + query + "&limit=20");
             if (response.ok) {
