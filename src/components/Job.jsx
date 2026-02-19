@@ -1,7 +1,11 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../redux/actions";
+import {
+    actionAddToFavorite,
+    actionRemoveFromFavorites,
+    ADD_TO_FAVORITES,
+} from "../redux/actions";
 
 const Job = ({ data }) => {
     const dispatch = useDispatch();
@@ -28,20 +32,16 @@ const Job = ({ data }) => {
                         variant="info"
                         className="text-white mb-1"
                         onClick={() => {
-                            dispatch({
-                                type: ADD_TO_FAVORITES,
-                                payload: data.company_name,
-                            });
+                            dispatch(actionAddToFavorite(data.company_name));
                         }}>
                         Aggiungi ai preferiti
                     </Button>
                     <Button
                         variant="danger"
                         onClick={() => {
-                            dispatch({
-                                type: REMOVE_FROM_FAVORITES,
-                                payload: data.company_name,
-                            });
+                            dispatch(
+                                actionRemoveFromFavorites(data.company_name),
+                            );
                         }}>
                         Rimuovi dai preferiti
                     </Button>
