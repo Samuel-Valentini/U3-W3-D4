@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {
     actionAddToFavorite,
     actionRemoveFromFavorites,
-    ADD_TO_FAVORITES,
 } from "../redux/actions";
 
 const Job = ({ data }) => {

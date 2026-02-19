@@ -1,48 +1,52 @@
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../actions";
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES, SEARCH } from "../actions";
 
 ADD_TO_FAVORITES;
 
 const initialState = {
-    favorite: {
-        companies: [],
-    },
+    companies: [],
 };
 
-const mainReducer = (currentState = initialState, action) => {
+const initialStateSearch = {
+    data: [],
+};
+
+export const searchReducer = (currentState = initialStateSearch, action) => {
+    switch (action.type) {
+        case SEARCH: {
+            return {
+                ...currentState,
+                data: action.payload,
+            };
+        }
+        default:
+            return currentState;
+    }
+};
+
+export const mainReducer = (currentState = initialState, action) => {
     switch (action.type) {
         case ADD_TO_FAVORITES: {
             const company = action.payload;
-            if (currentState.favorite.companies.includes(company)) {
+            if (currentState.companies.includes(company)) {
                 return currentState;
             } else
                 return {
                     ...currentState,
-                    favorite: {
-                        ...currentState.favorite,
-                        companies: [
-                            ...currentState.favorite.companies,
-                            company,
-                        ],
-                    },
+
+                    companies: [...currentState.companies, company],
                 };
         }
 
         case REMOVE_FROM_FAVORITES:
             return {
                 ...currentState,
-                favorite: {
-                    ...currentState.favorite,
-                    companies: currentState.favorite.companies.filter(
-                        (company) => {
-                            return company !== action.payload;
-                        },
-                    ),
-                },
+
+                companies: currentState.companies.filter((company) => {
+                    return company !== action.payload;
+                }),
             };
 
         default:
             return currentState;
     }
 };
-
-export default mainReducer;
