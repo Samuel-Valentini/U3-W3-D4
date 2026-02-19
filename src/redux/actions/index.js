@@ -1,6 +1,7 @@
 export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
 export const REMOVE_FROM_FAVORITES = "REMOVE_FROM_FAVORITES";
 export const SEARCH = "SEARCH";
+const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
 export const actionRemoveFromFavorites = (company) => {
     return { type: REMOVE_FROM_FAVORITES, payload: company };
@@ -20,7 +21,7 @@ export const actionSearch = (data) => {
     };
 };
 
-export const getActionSearch = () => {
+export const getActionSearch = (query) => {
     return async (dispatch) => {
         try {
             const response = await fetch(baseEndpoint + query + "&limit=20");

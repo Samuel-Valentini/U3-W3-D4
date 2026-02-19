@@ -22,23 +22,13 @@ const MainSearch = () => {
     };
 
     useEffect(() => {
-        getActionSearch();
+        dispatch(getActionSearch(query));
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(baseEndpoint + query + "&limit=20");
-            if (response.ok) {
-                const { data } = await response.json();
-                dispatch(actionSearch(data));
-            } else {
-                alert("Error fetching results");
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch(getActionSearch(query));
     };
 
     return (
